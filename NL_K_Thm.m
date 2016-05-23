@@ -1,0 +1,19 @@
+function [ F ] = NL_K_Thm( a, kmm, delt, dw, ke, ko, B, s)
+% This is to express the coupled complex nonlinear mode equations into 4
+% real equations, see my notebook ->NL_K_Thm
+%   此处显示详细说明
+
+F(1) = -(ko(2)+ke(2))/2*a(3)+(2*dw+delt)*a(4)-imag(kmm)*(a(1)^2-a(2)^2)-2*a(1)*a(2)*real(kmm) ...
+    -a(4)*(B(1,2)*(a(1)^2+a(2)^2)+B(2,2)*(a(3)^2+a(4)^2));
+F(2) = -(2*dw+delt)*a(3)-(ko(2)+ke(2))/2*a(4)+(a(1)^2-a(2)^2)*real(kmm)-2*a(1)*a(2)*imag(kmm) ...
+    +a(3)*(B(1,2)*(a(1)^2+a(2)^2)+B(2,2)*(a(3)^2+a(4)^2));
+F(3) = -(ke(1)+ko(1))/2*a(1)+dw*a(2)+imag(kmm)*(a(1)*a(3)+a(2)*a(4))...
+    -real(kmm)*(a(1)*a(4)-a(3)*a(2))-a(2)*(B(1,1)*(a(1)^2+a(2)^2)+B(2,1)*(a(3)^2+a(4)^2))...
+    +sqrt(ke(1))*real(s);
+F(4) = -dw*a(1)-(ko(1)+ke(1))/2*a(2)+real(kmm)*(a(1)*a(3)+a(2)*a(4))...
+    +imag(kmm)*(a(1)*a(4)-a(3)*a(2))+a(1)*(B(1,1)*(a(1)^2+a(2)^2)+B(2,1)*(a(3)^2+a(4)^2))...
+    +sqrt(ke(1))*imag(s);
+
+
+end
+

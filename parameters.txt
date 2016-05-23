@@ -1,0 +1,42 @@
+tunable:
+dw = 0;
+s0 = sqrt(1e-3);    %input 1mW
+lam1 = 1.55e-6;     %m
+lam2 = lam1/2;  %suppose on resonance
+
+input para:
+delt = 1e9; %from detuning.m
+kmm = -1.0726e-10 - 1.6896e+06i; %from kappa_cal.m
+n1 = n_lam(lam1);   %from n_lam.m
+n2 = n_lam(lam2);   
+
+constant:
+c0 = 299792458; %m/s
+Z0 = 376.73;    %free space resistance
+epsi0 = 8.854188e-12;   %F/m
+
+material para:
+ko1 = 3e6; %Hz
+ke1 = 3e6; %Hz
+ko2 = 6e6; %Hz
+ke2 = 6e6; %Hz, corresponding to Q~2e8
+Q1 = 2*pi*c0/(lam1*(ko1+ke1));
+Q2 = 2*pi*c0/(lam2*(ko2+ke2));
+
+kai31 = 2.0e-22;   %m2/V2
+kai32 = 2.2e-22;    %m2/V2
+
+dndT = 8.7e-6;  %1/K
+rho = 2200; %kg/m3
+C = 740;    %J/(kgK)
+D = 9.5e-7; %m2/s
+
+Qab1 = 7e8;
+Qab2 = 2e10;    %from Rokhsari_APL_2004, Fig.2 test
+
+
+
+
+
+
+
