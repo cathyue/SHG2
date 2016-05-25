@@ -5,7 +5,7 @@ p = 1;
 n0 = 1.44;  %initial refractive index 
 N0 = 1.45;
 P = 2;
-R = 31e-6;
+R = 30e-6;
 w1 = zeros(1, length(l));
 w2 = zeros(length(P),length(l));
 
