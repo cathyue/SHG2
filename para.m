@@ -24,7 +24,7 @@ C = 740;    %J/(kgK)
 D = 9.5e-7; %m2/s
 Qab = [7e8; 2e10];  %from Rokhsari_APL_2004, Fig.2
 b = [1.7e-6;sqrt(1.08^2+1)*1e-6];    %m, estimated from phil(l,x)
-dthet = 2*D./(b.^2)./124.54/2;    %emperical value
+dthet = 2*D./(b.^2)./124.54/2;    %emperical value, similar with Carmon_OE_2004
 
 %Bij_cal
 B = zeros(2,2);

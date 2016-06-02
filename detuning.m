@@ -5,7 +5,7 @@ p = 1;
 n0 = 1.44;  %initial refractive index 
 N0 = 1.45;
 P = 2;
-R = 31.5e-6;
+R = 30e-6;
 w1 = zeros(1, length(l));
 w2 = zeros(length(P),length(l));
 
@@ -23,17 +23,24 @@ for kl = 1:length(l)
 end
 
 dw = zeros(length(P), length(l));
+coeP2 = zeros(length(P), length(l));
+c0 = 299792458; %m/s
+lam1 = (2*pi*c0./w1).';
+lam2 = (2*pi*c0./w2).';
+Q = 2e8;
 
-figure;
-hold on;
+figure;hold on;
 for kp = 1:length(P)
     dw(kp, :) = (w2(kp, :)-2.*w1)./w2(kp, :);
-    plot(l, dw(kp, :));
+    coeP2(kp,:) = (1./(1+(2.*dw(kp,:).*Q).^2)).';
+    plot(lam1, dw(kp, :));
 end
+% semilogy(lam1, coeP2(:),'o');
+coeP2 = coeP2.';
 
 %legend('P=1', '2','3','4');
-xlabel('l');ylabel('\Delta/\omega_2')
-plot (l, zeros(1,length(l)));
+xlabel('lam1');ylabel('CoeP2');
+plot (lam1, zeros(1,length(l)));
 
 
    

@@ -7,7 +7,7 @@ para;   %warning: You should change sample if you use different pairs of paras!!
 dw = 0;
 ke = [3e6; 6e6].*(2*pi);    %rad/s
 ke0 = ke;
-ke_s = 1.6; %coupling coeffecient, ke/ko
+ke_s = 0.4; %coupling coeffecient, ke/ko
 
 % material para:
 ko = [3e6; 6e6].*(2*pi);%rad/s, corresponding to Q~2e8
@@ -18,7 +18,7 @@ a12_est = delt/(B(1,2)-2*B(1,1));
 wc_est = a12_est*B(1,1);
 Pin_est = a12_est*(ke(1)+ko(1))^2/4/ke(1);
 theta_sin = 0;
-s_in = sqrt(3.63e-4:0.01e-4:3.7e-4).*(cos(theta_sin)+1i*sin(theta_sin));    %input sqrt(W)
+s_in = sqrt(4.2e-4:0.01e-4:4.27e-4).*(cos(theta_sin)+1i*sin(theta_sin));    %input sqrt(W)
 
 P2m = zeros(1, length(s_in));
 P1m = zeros(1, length(s_in));
@@ -37,7 +37,7 @@ for kke = 1:length(ke_s)
         a0(2) = kmm*a0(1)^2/((ko(2)+ke(2))/2);
         %         Pext = [3.3005e-04, 9.0811e-7];  % change manually!
         %         Pext = [1,1];
-        theta0 = [0; pi/2];
+        theta0 = [0; pi/2]; %phase of initial solution
         a0 = a0.*[1*(cos(theta0(1))+1i*sin(theta0(1))); 0.5*(cos(theta0(2))+1i*sin(theta0(2)))];
         x = [real(a0(1)), imag(a0(1)), real(a0(2)), imag(a0(2))];
         options = optimoptions('fsolve','MaxFunEval', 400,'MaxIter', 400, 'algorithm', 'levenberg-marquardt');
@@ -99,4 +99,7 @@ for kke = 1:length(ke_s)
     end
     
 end
+yid = P2id./s_in.^2;    %conversion efficiency, ideal
+ym = P2m./s_in.^2;  %conversion efficiency, max achievable
+figure; plot(ym);hold on; plot(yid);
 % figure; plot(sweep, P1);
