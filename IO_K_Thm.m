@@ -1,19 +1,21 @@
 % IO_K_Thm.m
 % This is to calculate the nonlinear coupled mode equations involving Kerr
 % Thermal nonlinearities
+clear; clc;
 para;   %warning: You should change sample if you use different pairs of paras!!!
 
+%%
 % tunable:
 dw = 0;
 ke = [3e6; 6e6].*(2*pi);    %rad/s
 ke0 = ke;
-ke_s = 0.4; %coupling coeffecient, ke/ko
+ke_s = 1; %coupling coeffecient, ke/ko
 
-% material para:
+%% material para:
 ko = [3e6; 6e6].*(2*pi);%rad/s, corresponding to Q~2e8
 Q = 2*pi*c0./(lam0.*(ko+ke)./(2*pi));
 
-%estimate the power to ensure SHG
+%% estimate the power to ensure SHG
 a12_est = delt/(B(1,2)-2*B(1,1));
 wc_est = a12_est*B(1,1);
 Pin_est = a12_est*(ke(1)+ko(1))^2/4/ke(1);
@@ -28,6 +30,7 @@ B0 = B;
 delt0 = delt;
 dw0 = dw;
 
+%% 
 for kke = 1:length(ke_s)
     ke = ke0.*ke_s(kke);
     for ks0 = 1:length(s_in)

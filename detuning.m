@@ -1,11 +1,11 @@
  % detuning between the 1 and 2 order wave, regard to different l (x-axis),
  % and p (different lines)
-l = 60:300;
+l = 60:200;
 p = 1;
 n0 = 1.44;  %initial refractive index 
 N0 = 1.45;
-P = 2;
-R = 30e-6;
+P = [1,2,3];
+R = 60e-6/2;
 w1 = zeros(1, length(l));
 w2 = zeros(length(P),length(l));
 

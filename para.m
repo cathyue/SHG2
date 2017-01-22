@@ -1,5 +1,5 @@
 %   para.m
-load sample2.mat;
+load samp30_169.mat;
 
 % from sample.mat, close to on resonance condition
 lam0 = [lam10; lam20];
@@ -15,7 +15,7 @@ epsi0 = 8.854188e-12;   %F/m
 
 %Kerr nonlinearity
 n2 = [2.79e-20; 2.48e-20]; %m2/W, Review and assessment of measured values of the nonlinear refractive-index coefficient of fused silica David Milam
-kai3 = n2.*4.*n0.^2.*epsi0*c0/3;   %m2/V2
+kai3 = n2.*4.*n0.^2.*epsi0*c0/3;   %m2/V[2
 
 % Thermal nonlinearity
 dndT = 6e-6;  %1/K
