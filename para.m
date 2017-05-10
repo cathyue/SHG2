@@ -1,5 +1,5 @@
 %   para.m
-load samp30_169.mat;
+load sample.mat;
 
 % from sample.mat, close to on resonance condition
 lam0 = [lam10; lam20];
