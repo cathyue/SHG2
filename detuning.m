@@ -1,11 +1,12 @@
  % detuning between the 1 and 2 order wave, regard to different l (x-axis),
  % and p (different lines)
-l = 60:200;
+clear; clc;
+l = 100:240;
 p = 1;
 n0 = 1.44;  %initial refractive index 
 N0 = 1.45;
 P = [1,2,3];
-R = 60e-6/2;
+R = 62e-6/2;
 w1 = zeros(1, length(l));
 w2 = zeros(length(P),length(l));
 
@@ -25,13 +26,13 @@ end
 dw = zeros(length(P), length(l));
 coeP2 = zeros(length(P), length(l));
 c0 = 299792458; %m/s
-lam1 = (2*pi*c0./w1).';
+lam1 = (2*pi*c0./w1).'.*1e9;
 lam2 = (2*pi*c0./w2).';
 Q = 2e8;
 
 figure;hold on;
 for kp = 1:length(P)
-    dw(kp, :) = (w2(kp, :)-2.*w1)./w2(kp, :);
+    dw(kp, :) = (w2(kp, :)-2.*w1)./w1(kp);
     coeP2(kp,:) = (1./(1+(2.*dw(kp,:).*Q).^2)).';
     plot(lam1, dw(kp, :));
 end
@@ -39,7 +40,7 @@ end
 coeP2 = coeP2.';
 
 %legend('P=1', '2','3','4');
-xlabel('lam1');ylabel('CoeP2');
+xlabel('Pump wavelength (nm)');ylabel('(\omega_2-2\omega_1)/\omega_1');
 plot (lam1, zeros(1,length(l)));
 
 
